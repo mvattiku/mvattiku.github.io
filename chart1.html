@@ -4,15 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Narrative Visualization Project</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="style.css">
+  <title>Narrative Visualization Project</title>
 </head>
 
 <body>
   <div class="top-bar">
     <div style="justify-content: space-between;">
-      <h1 style="color: white; margin-bottom: 0px;">Analysis of Financial Recession Indicators</h1>
-      <p style="color: rgb(183, 183, 183); margin-top: 0px;">CS416 - Narrative Visualization Project</p>
+      <h1 style="color: white; margin-bottom: 0px;">Real GDP (Gross Domestic Product)</h1>
+      <p style="color: rgb(183, 183, 183); margin-top: 0px;">Analysis of Financial Recession Indicators</p>
     </div>
     <button class="custom-btn" style="margin-right: 50px;" onclick="location.href='index.html'">Home</button>
   </div>
@@ -30,12 +31,13 @@
         By exploring these patterns, we can gain a comprehensive understanding of the current state of the US economy
         and predictfor future recessions.
       </p>
-      <h3 style="text-align: center;">Data from <a
-          href="https://www.kaggle.com/datasets/mikoajfish99/us-recession-and-financial-indicators/data">Kaggle</a></h3>
     </div>
+    <div id="real-gdp-chart"></div>
   </div>
+  <!-- <script type="text/javascript" src="js/real_gdp_chart.js"></script> -->
   <div class="bottom-bar">
-    <button class="custom-btn" onclick="location.href='chart1.html'">Next</button>
+    <button class="custom-btn" onclick="location.href='index.html'">Prev</button>
+    <button class="custom-btn" onclick="location.href='chart2.html'">Next</button>
   </div>
 </body>
 <html>

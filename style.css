@@ -1,0 +1,35 @@
+.top-bar,
+.bottom-bar {
+  background-color: rgb(35, 35, 71);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.bottom-bar {
+  position: fixed;
+  width: 100%;
+  padding: 20px 0;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  gap: 10px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.custom-btn {
+  padding: 7px;
+  font-size: medium;
+  font-weight: bold;
+  border-radius: 2px;
+  border-width: 0;
+  width: 100px;
+}
