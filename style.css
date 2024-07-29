@@ -1,6 +1,12 @@
+:root {
+  --custom-dark: rgb(35, 35, 71);
+  --custom-gray: rgb(112, 112, 141);
+  --pointer-color: rgb(129, 1, 1);
+}
+
 .top-bar,
 .bottom-bar {
-  background-color: rgb(35, 35, 71);
+  background-color: var(--custom-dark);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +25,7 @@
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -32,4 +38,37 @@
   border-radius: 2px;
   border-width: 0;
   width: 100px;
+}
+
+#stock-select {
+  background-color: transparent;
+  border: solid var(--custom-dark);
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: var(--custom-dark);
+  padding: 7px;
+  font-weight: bold;
+}
+
+.annotation-note-title {
+  fill: black;
+  font-size: small;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.annotation path {
+  stroke: none;
+  fill-opacity: 0.2;
+}
+
+.axis-label {
+  font-weight: bold;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
