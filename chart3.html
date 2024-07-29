@@ -13,7 +13,7 @@
 <body>
   <div class="top-bar">
     <div style="justify-content: space-between;">
-      <h1 style="color: white; margin-bottom: 0px;">Stock Market Overview</h1>
+      <h1 style="color: white; margin-bottom: 0px;">Stock Market Performance</h1>
       <p style="color: rgb(183, 183, 183); margin-top: 0px;">Analysis of Financial Recession Indicators</p>
     </div>
     <button class="custom-btn" style="margin-right: 50px;" onclick="location.href='index.html'">Home</button>
@@ -23,19 +23,18 @@
       <div>
         <h3 style="margin-bottom: 0;">Overview:</h3>
         <p style="text-align: justify;">
-          The following display all the stock exchange markets while highlighting the recession periods.
-          From the data we can see that all markets generally increased and decreased synchronously.
-          And due to this all markets generally were affected similarly during recession periods although the rate of
-          growth and decline varied.
+          The following allows you select a specific stock exchange to dive deeper into how recession periods affected
+          specific markets.
         </p>
       </div>
-      <div id="stock-full-chart"></div>
+      <label for="stock-select">Select a Stock Exchange:</label>
+      <select id="stock-select"></select>
+      <div id="stock-chart"></div>
     </div>
   </div>
-  <script src="js/all_stocks.js"></script>
+  <script src="js/stock_filter.js"></script>
   <div class="bottom-bar">
-    <button class="custom-btn" onclick="location.href='index.html'">Prev</button>
-    <button class="custom-btn" onclick="location.href='chart2.html'">Next</button>
+    <button class="custom-btn" onclick="location.href='chart2.html'">Prev</button>
   </div>
 </body>
 <html>
