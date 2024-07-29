@@ -2,46 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Narrative Visualization Project</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Narrative Visualization Project</title>
 </head>
 
 <body>
-    <div class="top-bar">
-        <div style="justify-content: space-between;">
-            <h1 style="color: white; margin-bottom: 0px;">Unemployment Rate</h1>
-            <p style="color: rgb(183, 183, 183); margin-top: 0px;">Analysis of Financial Recession Indicators</p>
-        </div>
-        <button class="custom-btn" style="margin-right: 50px;" onclick="location.href='index.html'">Home</button>
+  <div class="top-bar">
+    <div style="justify-content: space-between;">
+      <h1 style="color: white; margin-bottom: 0px;">Stock Market Performance</h1>
+      <p style="color: rgb(183, 183, 183); margin-top: 0px;">Analysis of Financial Recession Indicators</p>
     </div>
-    <div class="container">
-        <div class="content">
-            <div>
-                <h3 style="margin-bottom: 0;">Overview:</h3>
-                <p style="text-align: justify;">
-                    The following set of visualizations display historical financial that can be used to understand
-                    different aspects of economic recessions in the US.
-                    Some indicators of recession are: gross domestic product (GDP), unemployment rate, stock market
-                    performance,
-                    consumer spending, industrial production, and more.
-                    This narrative will focus on GDP, unemployment rate, and stock market performance data to, help
-                    understand how
-                    these indicators were affected during the past couple recessions.
-                    The data will highlight the dot-com bubble (2001), Great Recession (2007-2009), and Covid Recession
-                    (2020).
-                    By exploring these patterns, we can gain a comprehensive understanding of the current state of the
-                    US
-                    economy
-                    and predictfor future recessions.
-                </p>
-            </div>
-        </div>
+    <button class="custom-btn" style="margin-right: 50px;" onclick="location.href='index.html'">Home</button>
+  </div>
+  <div class="container">
+    <div class="content">
+      <div>
+        <h3 style="margin-bottom: 0;">Overview:</h3>
+        <p style="text-align: justify;">
+          The following allows you select a specific stock exchange to dive deeper into how recession periods affected
+          specific markets.
+        </p>
+      </div>
+      <label for="stock-select">Select a Stock Exchange:</label>
+      <select id="stock-select"></select>
+      <div id="stock-chart"></div>
     </div>
-    <div class="bottom-bar">
-        <button class="custom-btn" onclick="location.href='chart1.html'">Prev</button>
-        <button class="custom-btn" onclick="location.href='chart3.html'">Next</button>
-    </div>
+  </div>
+  <script src="js/stock_mine.js"></script>
+  <div class="bottom-bar">
+    <button class="custom-btn" onclick="location.href='chart1.html'">Prev</button>
+  </div>
 </body>
 <html>
