@@ -23,6 +23,10 @@ function plot(divId, data, exchangeName) {
   // svg
   const svg = d3.select(divId)
     .append('svg')
+    .attr('viewBox', [0, 0,
+      width + margin.right + margin.left,
+      height + margin.top + margin.bottom,
+    ])
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
     .append('g')
@@ -149,4 +153,43 @@ function plot(divId, data, exchangeName) {
     .attr('transform', 'translate(0,' + -margin.top + ')')
     .attr('class', 'annotation-group')
     .call(makeAnnotations);
+
+  // add the dots with tooltips
+  var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  function forma_date(date) {
+    return date.toLocaleString('en', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    })
+  }
+
+  svg.selectAll("dot")
+    .data(data)
+    .enter().append("circle")
+    .style("fill", 'rgb(129, 1, 1)')
+    .style("opacity", 0)
+    .attr("r", 5)
+    .attr("cx", function (d) { return x(d.date); })
+    .attr("cy", function (d) { return y(d.close); })
+    .on("mouseover", function (event, d) {
+      div.transition()
+        .duration(200)
+        .style("opacity", .9);
+      d3.select(this).style("opacity", 1);
+      div.html(forma_date(d.date) + "<br/>" + d.close)
+        .style("left", (event.pageX) + "px")
+        .style("top", (event.pageY - 28) + "px");
+    })
+    .on("mouseout", function (event, d) {
+      console.log(event);
+      console.log(this);
+      d3.select(this).style("opacity", 0);
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
 };

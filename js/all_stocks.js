@@ -187,5 +187,4 @@ function plot(divId, data, exchangeName) {
     .attr('transform', 'translate(0,' + -margin.top + ')')
     .attr('class', 'annotation-group')
     .call(makeAnnotations);
-
 };

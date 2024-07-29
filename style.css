@@ -1,7 +1,6 @@
 :root {
   --custom-dark: rgb(35, 35, 71);
   --custom-gray: rgb(112, 112, 141);
-  --pointer-color: rgb(129, 1, 1);
 }
 
 .top-bar,
@@ -71,4 +70,17 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
 }
