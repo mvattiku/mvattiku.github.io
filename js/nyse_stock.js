@@ -185,8 +185,6 @@ function plot(divId, data, exchangeName) {
         .style("top", (event.pageY - 28) + "px");
     })
     .on("mouseout", function (event, d) {
-      console.log(event);
-      console.log(this);
       d3.select(this).style("opacity", 0);
       div.transition()
         .duration(500)

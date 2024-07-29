@@ -20,7 +20,6 @@ var margin = { top: 50, bottom: 50, left: 50, right: 100 },
 // Plotting data
 function plot(divId, data, exchangeName) {
   const groupedData = d3.group(data, d => d.index);
-  console.log(groupedData);
 
   // svg
   const svg = d3.select(divId)

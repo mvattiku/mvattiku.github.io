@@ -58,9 +58,6 @@ function plot(divId, data, exchangeName) {
     .append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
-    .on('mouseover', mouseover)
-    .on('mousemove', mousemove)
-    .on('mouseout', mouseout)
     .style('overflow', 'visible')
     .append('g')
     .attr('transform',
@@ -187,52 +184,41 @@ function plot(divId, data, exchangeName) {
     .attr('class', 'annotation-group')
     .call(makeAnnotations);
 
-  // Tooltip
-  const tooltipPointer = svg
-    .append('circle')
-    .attr('r', 0)
-    .attr('fill', 'var(--pointer-color)')
-    .style('stroke', 'black')
-    .attr('opacity', 0);
-  const tooltip = d3.select('#tooltip');
-  svg.append('rect');
-  // .style('pointer-events', 'none');
-  // moveover functions
-  // var focus = svg
-  //   .append('g')
-  //   .append('circle')
-  //   .style('fill', 'none')
-  //   .attr('stroke', 'black')
-  //   .attr('r', 8.5)
-  //   .style('opacity', 0)
+  // add the dots with tooltips
+  var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
-  var focusText = svg
-    .append('g')
-    .append('text')
-    .style('opacity', 0)
-    .attr('text-anchor', 'left')
-    .attr('alignment-baseline', 'middle')
-
-  function mouseover() {
-    focus.style('opacity', 1)
-    focusText.style('opacity', 1)
-  };
-
-  function mouseout() {
-    focus.style('opacity', 0)
-    focusText.style('opacity', 0)
-  };
-
-  function mousemove() {
-    var x0 = x.invert(d3.mouse(this)[0]);
-    var i = bisect(data, x0, 1);
-    selectedData = data[i]
-    focus
-      .attr('cx', x(selectedData.x))
-      .attr('cy', y(selectedData.y))
-    focusText
-      .html('x:' + selectedData.x + '  -  ' + 'y:' + selectedData.y)
-      .attr('x', x(selectedData.x) + 15)
-      .attr('y', y(selectedData.y))
+  function forma_date(date) {
+    return date.toLocaleString('en', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    })
   }
+
+  svg.selectAll("dot")
+    .data(data)
+    .enter().append("circle")
+    .style("fill", 'rgb(129, 1, 1)')
+    .style("opacity", 0)
+    .attr("r", 5)
+    .attr("cx", function (d) { return x(d.date); })
+    .attr("cy", function (d) { return y(d.close); })
+    .on("mouseover", function (event, d) {
+      div.transition()
+        .duration(200)
+        .style("opacity", .9);
+      d3.select(this).style("opacity", 1);
+      div.html(forma_date(d.date) + "<br/>" + d.close)
+        .style("left", (event.pageX) + "px")
+        .style("top", (event.pageY - 28) + "px");
+    })
+    .on("mouseout", function (event, d) {
+      d3.select(this).style("opacity", 0);
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
+
 };
