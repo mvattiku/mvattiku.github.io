@@ -15,7 +15,6 @@ const rawdata = d3.csv('data/stock.csv', (d) => {
     NASDAQ: rawdata.filter(({ index }) => index == 'IXIC'),
     NYSE: rawdata.filter(({ index }) => index == 'NYA'),
     SHANGHAI: rawdata.filter(({ index }) => index == '000001.SS'),
-    SOUTHAFRICA: rawdata.filter(({ index }) => index == 'J203.JO'),
     SWISS: rawdata.filter(({ index }) => index == 'SSMI'),
     TAIWAN: rawdata.filter(({ index }) => index == 'TWII'),
     TOKYO: rawdata.filter(({ index }) => index == 'N225'),

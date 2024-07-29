@@ -72,6 +72,7 @@ function plot(divId, data, exchangeName) {
       .text('↑ Close Price ($)'));
 
   // plotting line
+  const plot = svg.append('g').attr('clip-path', 'url(#clip)');
   const line = d3.line()
     .x((d) => x(d.date))
     .y((d) => y(d.close));
@@ -190,4 +191,61 @@ function plot(divId, data, exchangeName) {
         .duration(500)
         .style("opacity", 0);
     });
+
+
+  // Add a clipPath: everything out of this area won't be drawn.
+  var clip = svg.append("defs").append("svg:clipPath")
+    .attr("id", "clip")
+    .append("svg:rect")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("x", 0)
+    .attr("y", 0);
+
+  // Add brushing
+  var brush = d3.brushX()
+    .extent([[0, 0], [width, height]])
+    .on("end", updateChart)
+
+  svg.append('g').attr("clip-path", "url(#clip)")
+
+  svg.append("g")
+    .attr("class", "brush")
+    .call(brush);
+
+  // A function that set idleTimeOut to null
+  var idleTimeout
+  function idled() { idleTimeout = null; }
+
+  // A function that update the chart for given boundaries
+  function updateChart(event) {
+    extent = event.selection
+
+    // If no selection, back to initial coordinate. Otherwise, update X axis domain
+    if (!extent) {
+      if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+      x.domain(d3.extent(data, (d) => d.date));
+    } else {
+      d3.select('.annotation-group').remove();
+      x.domain([x.invert(extent[0]), x.invert(extent[1])])
+      svg.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+    }
+
+    // Update axis and area position
+    xAxis.transition().duration(1000).call(d3.axisBottom(x))
+    svg.select('.stockPlotLine')
+      .transition()
+      .duration(1000)
+      .attr("d", line)
+  }
+
+  // If user double click, reinitialize the chart
+  svg.on("dblclick", function () {
+    x.domain(d3.extent(data, (d) => d.date))
+    xAxis.transition().call(d3.axisBottom(x))
+    svg.select('.stockPlotLine')
+      .transition()
+      .attr("d", line)
+  });
+
 };
